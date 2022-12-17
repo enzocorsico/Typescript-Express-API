@@ -2,12 +2,36 @@ version: '3.8'
 
 services:
   api:
-    container_name: 'api'
+    container_name: api
     build:
       context: .
     volumes:
       - .:/app
       - /app/node_modules
+    depends_on:
+      - bdd
     command: npm run dev
+    env_file:
+      - ./.env
     ports:
-      - 3000:3000
+      - ${API_PORT}:3000
+  
+  bdd:
+    container_name: bdd
+    image: mysql
+    build:
+      context: ./bdd
+    volumes:
+      - ./bdd/data:/var/lib/mysql:z
+    env_file:
+      - ./.env
+    ports:
+      - ${MYSQL_PORT}
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    depends_on:
+      - bdd
+    ports:
+      - ${ADMINER_PORT}:8080
