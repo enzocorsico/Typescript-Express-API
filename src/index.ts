@@ -16,5 +16,5 @@ app.use(cors({
 app.use("/client", clientRouter)
 
 app.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}`);
+    console.log(`Listening on \x1b[32mhttp://localhost:${port}\x1b[0m`);
 });

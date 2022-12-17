@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && node dist/index.js",
-    "dev": "npx ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "npx tsc --build",
+    "start": "tsc && node dist/index.js",
+    "dev": "tsc -w & nodemon -q -L dist/index.js",
+    "build": "tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,7 +14,8 @@
   "dependencies": {
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
